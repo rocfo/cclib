@@ -98,28 +98,28 @@ class CJSON(filewriter.Writer):
                     l3_data_object = l2_data_object[attribute_path[2]]
                     self.set_JSON_attribute(l3_data_object, attribute_name)
 
-        # Attributes which are not directly obtained from the output files.
-        if hasattr(self.ccdata, 'moenergies') and hasattr(self.ccdata, 'homos'):
-            if 'energy' not in cjson_dict['properties']:
-                cjson_dict['properties']['energy'] = dict()
-
-            cjson_dict['properties']['energy']['alpha'] = dict()
-            cjson_dict['properties']['energy']['beta'] = dict()
-
-            homo_idx_alpha = int(self.ccdata.homos[0])
-            homo_idx_beta = int(self.ccdata.homos[-1])
-            energy_alpha_homo = self.ccdata.moenergies[0][homo_idx_alpha]
-            energy_alpha_lumo = self.ccdata.moenergies[0][homo_idx_alpha + 1]
-            energy_alpha_gap = energy_alpha_lumo - energy_alpha_homo
-            energy_beta_homo = self.ccdata.moenergies[-1][homo_idx_beta]
-            energy_beta_lumo = self.ccdata.moenergies[-1][homo_idx_beta + 1]
-            energy_beta_gap = energy_beta_lumo - energy_beta_homo
-
-            cjson_dict['properties']['energy']['alpha']['homo'] = energy_alpha_homo
-            cjson_dict['properties']['energy']['alpha']['gap'] = energy_alpha_gap
-            cjson_dict['properties']['energy']['beta']['homo'] = energy_beta_homo
-            cjson_dict['properties']['energy']['beta']['gap'] = energy_beta_gap
-            cjson_dict['properties']['energy']['total'] = self.ccdata.scfenergies[-1]
+#        # Attributes which are not directly obtained from the output files.
+#        if hasattr(self.ccdata, 'moenergies') and hasattr(self.ccdata, 'homos'):
+#            if 'energy' not in cjson_dict['properties']:
+#                cjson_dict['properties']['energy'] = dict()
+#
+#            cjson_dict['properties']['energy']['alpha'] = dict()
+#            cjson_dict['properties']['energy']['beta'] = dict()
+#
+#            homo_idx_alpha = int(self.ccdata.homos[0])
+#            homo_idx_beta = int(self.ccdata.homos[-1])
+#            energy_alpha_homo = self.ccdata.moenergies[0][homo_idx_alpha]
+#            energy_alpha_lumo = self.ccdata.moenergies[0][homo_idx_alpha + 1]
+#            energy_alpha_gap = energy_alpha_lumo - energy_alpha_homo
+#            energy_beta_homo = self.ccdata.moenergies[-1][homo_idx_beta]
+#            energy_beta_lumo = self.ccdata.moenergies[-1][homo_idx_beta + 1]
+#            energy_beta_gap = energy_beta_lumo - energy_beta_homo
+#
+#            cjson_dict['properties']['energy']['alpha']['homo'] = energy_alpha_homo
+#            cjson_dict['properties']['energy']['alpha']['gap'] = energy_alpha_gap
+#            cjson_dict['properties']['energy']['beta']['homo'] = energy_beta_homo
+#            cjson_dict['properties']['energy']['beta']['gap'] = energy_beta_gap
+#            cjson_dict['properties']['energy']['total'] = self.ccdata.scfenergies[-1]
 
         if hasattr(self.ccdata, 'atomnos'):
             cjson_dict['atoms']['elements']['atom count'] = len(self.ccdata.atomnos)
