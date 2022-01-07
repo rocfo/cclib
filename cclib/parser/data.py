@@ -175,7 +175,7 @@ class ccData:
        "vibramans":        Attribute(numpy.ndarray,    'raman',                       'vibrations:intensities'),
        "vibrmasses":       Attribute(numpy.ndarray,    'reduced masses',              'vibrations'),
        "vibsyms":          Attribute(list,             'vibration symmetry',          'vibrations'),
-       "zpve":             Attribute(float,            'zero-point correction',       'properties:energies')
+       "zpve":             Attribute(float,            'zero-point correction',       'properties:energy')
     }
 
     # The name of all attributes can be generated from the dictionary above.
